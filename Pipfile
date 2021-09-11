@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 jinja2 = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 selenium = "*"
