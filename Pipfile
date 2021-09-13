@@ -8,6 +8,7 @@ django = "*"
 jinja2 = "*"
 django-crispy-forms = "*"
 django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [dev-packages]
 selenium = "*"
