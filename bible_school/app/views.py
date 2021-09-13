@@ -1,7 +1,4 @@
-from django.forms import modelformset_factory
-from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView
-from .models import Student
+from django.shortcuts import render, redirect
 from .forms import StudentForm
 
 def main_page(request):
@@ -10,10 +7,11 @@ def main_page(request):
 def lookup_page(request):
     return render(request, 'pages/lookup.html')
 
-class StudentCreateView(CreateView):
-    model = Student
-    fields = ( 'name', 'title', 'contact', 'memo' )
-
-class StudentUpdateView(UpdateView):
-    model = Student
-    fields = ( 'name', 'title', 'contact', 'memo' )
+def student_registration(request):
+    if request.method == "POST":
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            return redirect('main_page')
+    else:
+        form = StudentForm()
+    return render(request, 'student/student_form.html', {'form':form})
