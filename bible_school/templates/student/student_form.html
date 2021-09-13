@@ -9,10 +9,28 @@
 {% endblock %}
 
 {% block main_body %}
+<p>* 표시는 필수사항입니다</p>
+<br>
+
 <form method="post">
   {% csrf_token %}
-  {{ form | crispy }}
-  <input type="submit" value="Submit">
+  <div class="row">
+    <div class="col-md-6">
+      {{ form.name | as_crispy_field }}
+    </div>
+    <div class="col-md-6">
+      {{ form.title | as_crispy_field }}
+    </div>
+  </div>
+  <br>
+  {{ form.contact | as_crispy_field }}
+  <br>
+  {{ form.memo | as_crispy_field }}
+  <br>
+  <input type="submit" value="등록">
 </form>
+
+<br>
+<p>문제가 생기면 관리자에게 연락주세요</p>
 {% endblock %}
 
