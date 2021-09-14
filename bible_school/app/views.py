@@ -16,3 +16,6 @@ def student_registration(request):
     else:
         form = StudentForm()
     return render(request, 'student/student_form.html', {'form':form})
+
+def student_lookup(request):
+    pass
