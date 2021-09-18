@@ -4,7 +4,7 @@
 {% block active_navlink %}
 <a class="nav-link" href="{% url 'main_page' %}">메인 화면</a>
 <a class="nav-link active" aria-current="page" href="{% url
-  'create_student_form' %}">학생 등록</a>
+          'create_student_form' %}">학생 등록</a>
 <a class="nav-link" href="{% url 'lookup_page' %}">조회</a>
 {% endblock %}
 
@@ -23,7 +23,14 @@
     </div>
   </div>
   <br>
-  {{ form.contact | as_crispy_field }}
+  <div class="row">
+    <div class="col-md-6">
+      {{ form.contact | as_crispy_field }}
+    </div>
+    <div class="col-md-6">
+      {{ form.church | as_crispy_field }}
+    </div>
+  </div>
   <br>
   {{ form.memo | as_crispy_field }}
   <br>
