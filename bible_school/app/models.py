@@ -5,7 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class Church(models.Model):
     name = models.CharField(max_length=128)
-    contact = PhoneNumberField(unique=True, region='KR')
+    contact = PhoneNumberField(unique=True, null=True, blank=True, region='KR')
 
     class Meta:
         verbose_name_plural = "churches"

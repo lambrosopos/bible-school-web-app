@@ -6,7 +6,7 @@ from .models import Student
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = [ 'name', 'title', 'contact', 'memo', 'church' ]
+        fields = [ 'name', 'title', 'contact', 'memo', 'church']
         widgets = {
             "name": forms.TextInput(
                 attrs={
