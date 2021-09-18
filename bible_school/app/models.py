@@ -13,11 +13,23 @@ class Church(models.Model):
     def __str__(self):
         return self.name
 
+class Title(models.Model):
+    name = models.CharField(max_length=16)
+    
+    class Meta:
+        verbose_name_plural = "titles"
+
+    def __str__(self):
+        return self.name
+
 class Student(models.Model):
     name = models.CharField(max_length=64)
-    title = models.CharField(max_length=128, blank=True)
     contact = PhoneNumberField(unique=True, null=False, blank=False, region='KR')
     memo = models.TextField(blank=True)
+    title = models.ForeignKey(
+        Title,
+        on_delete=models.CASCADE
+    )
     church = models.ForeignKey(
         Church,
         on_delete=models.CASCADE

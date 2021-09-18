@@ -13,9 +13,10 @@ class StudentForm(forms.ModelForm):
                     "placeholder":"이름을 입력해주세요 (예: 홍길동)"
                 }
             ),
-            "title": forms.TextInput(
+            "title": forms.Select(
                 attrs={
-                    "placeholder":"현재 담당하고 있는 직책을 입력해주세요 (예: 권사)"
+                    "placeholder":"현재 담당하고 있는 직책을 선택해주세요"
+                    "(없는 경우에는 관리자에게 문의해주세요)"
                 }
             ),
             "contact": forms.TextInput(
