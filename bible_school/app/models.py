@@ -22,10 +22,25 @@ class Title(models.Model):
     def __str__(self):
         return self.name
 
+class Cohort(models.Model):
+    name = models.CharField(max_length=128)
+    memo = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = "cohorts"
+
+    def __str__(self):
+        return self.name
+
 class Student(models.Model):
     name = models.CharField(max_length=64)
     contact = PhoneNumberField(unique=True, null=False, blank=False, region='KR')
     memo = models.TextField(blank=True)
+
+    cohort = models.ForeignKey(
+        Cohort,
+        on_delete=models.CASCADE
+    )
     title = models.ForeignKey(
         Title,
         on_delete=models.CASCADE
