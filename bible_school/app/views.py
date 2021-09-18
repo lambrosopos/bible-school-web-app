@@ -16,7 +16,18 @@ def lookup_page(request):
             Q(name__icontains=query_q)
         )
 
-        context["results"] = [_ for _ in query_results.values_list()]
+        context["results"] = list(range(len(query_results)))
+
+        for idx, record in enumerate(query_results):
+            context["results"][idx] = (
+                (
+                    record.name,
+                    record.cohort.name
+                )
+            )
+
+
+        breakpoint()
 
     return render(request, 'pages/lookup.html', {'context':context})
 
