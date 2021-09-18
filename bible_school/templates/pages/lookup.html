@@ -3,16 +3,23 @@
 {% block active_navlink %}
 <a class="nav-link" href="{% url 'main_page' %}">메인 화면</a>
 <a class="nav-link" href="{% url 'create_student_form' %}">학생 등록</a>
-<a class="nav-link active" aria-current="page" href="{% url 'lookup_page'
-  %}">조회</a>
+<a class="nav-link active" aria-current="page" href="{% url 'lookup_page' %}">조회</a>
 {% endblock %}
 
 {% block main_body %}
 <main class="px-3">
+  {% if context %}
+  <p> {{ context.results }} </p>
+
+  {% else %}
   <h1>학생에 대한 정보를 조회합니다.</h1>
-  <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-  <p class="lead">
-    <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
-  </p>
+  <br>
+  <form action="{% url 'lookup_page' %}" method="post">
+    {% csrf_token %}
+    <input name="q" type="text" placeholder="검색할 학생 이름">
+    <input type="submit" value="검색">
+  </form>
+
+  {% endif %}
 </main>
 {% endblock %}
