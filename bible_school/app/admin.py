@@ -1,11 +1,11 @@
 from django.contrib import admin
 
 from .models import ( 
-    Student, 
-    Church,
     Title,
+    Church,
     Cohort,
-    RoleGroupJoin
+    Student, 
+    CohortStudentJoin,
 )
 
 class StudentAdmin(admin.ModelAdmin):
@@ -20,11 +20,11 @@ class TitleAdmin(admin.ModelAdmin):
 class CohortAdmin(admin.ModelAdmin):
     list_display = ("name", "memo")
 
-class RoleGroupJoinAdmin(admin.ModelAdmin):
-    list_diplay = ("name")
+class CohortStudentJoinAdmin(admin.ModelAdmin):
+    list_diplay = ("group", "leader", "cohort", "student")
 
 admin.site.register(Title, TitleAdmin)
-admin.site.register(RoleGroupJoin, RoleGroupJoinAdmin)
 admin.site.register(Church, ChurchAdmin)
-admin.site.register(Student, StudentAdmin)
 admin.site.register(Cohort, CohortAdmin)
+admin.site.register(Student, StudentAdmin)
+admin.site.register(CohortStudentJoin, CohortStudentJoinAdmin)
