@@ -13,3 +13,10 @@ class Student(models.Model):
     contact = PhoneNumberField(unique=True, null=False, blank=False, region='KR')
 
     memo = models.TextField(blank=True)
+
+
+class Church(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=128)
+    contact = PhoneNumberField(unique=True, region='KR')
+
