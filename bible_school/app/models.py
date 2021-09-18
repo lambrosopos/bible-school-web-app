@@ -35,6 +35,7 @@ class Cohort(models.Model):
 class Student(models.Model):
     name = models.CharField(max_length=64)
     contact = PhoneNumberField(unique=True, null=False, blank=False, region='KR')
+    group = models.IntegerField()
     memo = models.TextField(blank=True)
 
     cohort = models.ForeignKey(
