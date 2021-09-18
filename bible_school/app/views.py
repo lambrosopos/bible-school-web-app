@@ -22,12 +22,10 @@ def lookup_page(request):
             context["results"][idx] = (
                 (
                     record.name,
+                    record.group,
                     record.cohort.name
                 )
             )
-
-
-        breakpoint()
 
     return render(request, 'pages/lookup.html', {'context':context})
 
