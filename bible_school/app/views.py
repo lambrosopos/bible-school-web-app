@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import StudentForm
-from .models import Student
+from .models import Student, Church
 
 def main_page(request):
     return render(request, 'pages/index.html')
@@ -9,6 +9,11 @@ def main_page(request):
 
 def lookup_page(request):
     context = {}
+
+    church_list = Church.objects.all()
+
+    context["churches"] = [{"id":_['id'], "name":_['name']} for _ in church_list.values()]
+
     if request.method == "POST":
         query_q = request.POST.get('q', '')
 
