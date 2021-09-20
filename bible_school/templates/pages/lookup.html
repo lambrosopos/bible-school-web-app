@@ -16,8 +16,25 @@
   <br>
   <form action="{% url 'lookup_page' %}" method="post">
     {% csrf_token %}
-    <input name="q" type="text" placeholder="검색할 학생 이름">
-    <input type="submit" value="검색">
+    <div class="row">
+      <div class="col-md-5">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>교회를 선택해주세요</option>
+          {% for church in churches %}
+          <option value={{ church.id }}>{{ church.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-7">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="검색할 학생 이름" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <span>
+            <button class="btn btn-outline-secondary"
+              type="submit">검색</button>
+          </span>
+        </div>
+      </div>
+    </div>
   </form>
 
   {% endif %}
