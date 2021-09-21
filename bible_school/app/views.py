@@ -56,6 +56,5 @@ def student_registration(request):
     return render(request, 'student/student_form.html', {'form':form})
 
 def student_group(request, student_id):
-    breakpoint()
-
+    context = {}
     return render(request, 'student/student_group.html', context)

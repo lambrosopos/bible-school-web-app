@@ -3,41 +3,34 @@
 
 {% block active_navlink %}
 <a class="nav-link" href="{% url 'main_page' %}">메인 화면</a>
-<a class="nav-link active" aria-current="page" href="{% url
-          'create_student_form' %}">학생 등록</a>
+<a class="nav-link" aria-current="page" href="{% url 'create_student_form' %}">학생 등록</a>
 <a class="nav-link" href="{% url 'lookup_page' %}">조회</a>
 {% endblock %}
 
 {% block main_body %}
-<p>* 표시는 필수사항입니다</p>
-<br>
+<div class="jumbotron">
+  <h1 class="display-4">허허허 님</h1>
+  <p><i>춘천온누리교회, 권사</i></p>
+  <p class="lead">2021성경대학학교 1학년 그룹 편성 및 리더 여부</p>
 
-<form method="post">
-  {% csrf_token %}
-  <div class="row">
-    <div class="col-md-6">
-      {{ form.name | as_crispy_field }}
-    </div>
-    <div class="col-md-6">
-      {{ form.title | as_crispy_field }}
-    </div>
-  </div>
   <br>
-  <div class="row">
-    <div class="col-md-6">
-      {{ form.contact | as_crispy_field }}
-    </div>
-    <div class="col-md-6">
-      {{ form.church | as_crispy_field }}
-    </div>
-  </div>
   <br>
-  {{ form.memo | as_crispy_field }}
   <br>
-  <input type="submit" value="등록">
-</form>
 
-<br>
-<p>문제가 생기면 관리자에게 연락주세요</p>
+  <table class="table table-dark">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">조 번호</th>
+      <th scope="col">리더 여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>조원</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 {% endblock %}
 
