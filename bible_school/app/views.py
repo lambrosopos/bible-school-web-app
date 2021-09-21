@@ -55,7 +55,7 @@ def student_registration(request):
         form = StudentForm()
     return render(request, 'student/student_form.html', {'form':form})
 
-def student_lookup(request, student_id):
+def student_group(request, student_id):
     breakpoint()
 
     return render(request, 'student/student_group.html', context)
