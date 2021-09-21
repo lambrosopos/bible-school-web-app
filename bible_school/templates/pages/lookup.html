@@ -29,8 +29,7 @@
       <td>{{ student.4 }}</td>
       <td>{{ student.5 }}</td>
       <td>
-          <a class="btn btn-outline-light" href="{% url 'student_lookup'
-            {{student.0}} %}">조회</a>
+          <a class="btn btn-outline-light" href="{% url 'student_lookup' student.0 %}">조회</a>
       </td>
     </tr>
     {% endfor %}
