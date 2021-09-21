@@ -9,28 +9,40 @@
 
 {% block main_body %}
 <div class="jumbotron">
-  <h1 class="display-4">허허허 님</h1>
-  <p><i>춘천온누리교회, 권사</i></p>
-  <p class="lead">2021성경대학학교 1학년 그룹 편성 및 리더 여부</p>
+  <h1 class="display-4">{{ student_name }}</h1>
+  <p><i>{{ church_name }},{{ title_name }}</i></p>
+  <p class="lead">그룹 편성 및 리더 여부</p>
 
+  {% if results %}
   <br>
   <br>
   <br>
 
   <table class="table table-dark">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">조 번호</th>
-      <th scope="col">리더 여부</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>조원</td>
-    </tr>
-  </tbody>
-</table>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">조 번호</th>
+        <th scope="col">리더 여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in results %}
+      <tr>
+        <th scope="row">{{ row.0 }}</th>
+        <td>{{ row.1 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <hr>
+  <br>
+  <br>
+  <br>
+
+  <p class="lead">조회할 기수와 그룹이 없습니다</p>
+  {% endif %}
+
 </div>
 {% endblock %}
 

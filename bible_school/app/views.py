@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import StudentForm
-from .models import Student, Church
+from .models import Student, Church, CohortStudentJoin
 
 def main_page(request):
     return render(request, 'pages/index.html')
@@ -26,21 +26,21 @@ def lookup_page(request):
             query_results = Student.objects.filter(
                 Q(name__icontains=student_name)
             )
-            
 
-        context["results"] = list(range(len(query_results)))
+        if query_results:
+            context["results"] = list(range(len(query_results)))
 
-        for idx, record in enumerate(query_results):
-            context["results"][idx] = (
-                (
-                    record.id,
-                    record.name,
-                    record.title.name,
-                    str(record.contact)[-4:],
-                    record.cohort.name,
-                    record.church.name
+            for idx, record in enumerate(query_results):
+                context["results"][idx] = (
+                    (
+                        record.id,
+                        record.name,
+                        record.title.name,
+                        str(record.contact)[-4:],
+                        record.cohort.name if record.cohort else '',
+                        record.church.name
+                    )
                 )
-            )
 
     return render(request, 'pages/lookup.html', context)
 
@@ -57,4 +57,26 @@ def student_registration(request):
 
 def student_group(request, student_id):
     context = {}
+
+    student = Student.objects.filter(
+        Q(id=student_id)
+    )[0]
+
+    context["student_name"] = student.name
+    context["title_name"] = student.title.name
+    context["church_name"] = student.church.name
+    context["cohort_name"] = student.cohort.name if student.cohort else ''
+
+    query_results = CohortStudentJoin.objects.filter(
+        Q(student_id=student_id)
+    )
+
+    context["results"] = list(range(len(query_results)))
+
+    for idx, record in enumerate(query_results):
+        context['results'][idx] = (
+            record.group,
+            '리더' if record.leader else '조원'
+        )
+
     return render(request, 'student/student_group.html', context)

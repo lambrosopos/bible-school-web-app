@@ -41,7 +41,8 @@ class Student(models.Model):
 
     cohort = models.ForeignKey(
         Cohort,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
     title = models.ForeignKey(
         Title,
