@@ -27,7 +27,9 @@ def lookup_page(request):
             context["results"][idx] = (
                 (
                     record.name,
-                    record.group,
+                    record.church.name,
+                    record.title.name,
+                    str(record.contact)[-4:],
                     record.cohort.name
                 )
             )
