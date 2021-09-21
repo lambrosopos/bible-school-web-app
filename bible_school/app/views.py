@@ -16,6 +16,7 @@ def lookup_page(request):
 
     if request.method == "POST":
         query_q = request.POST.get('q', '')
+        breakpoint()
 
         query_results = Student.objects.filter(
             Q(name__icontains=query_q)
