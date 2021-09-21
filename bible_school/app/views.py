@@ -18,9 +18,15 @@ def lookup_page(request):
         student_name = request.POST.get('student_name', '')
         church_id = request.POST.get('church_id', '')
 
-        query_results = Student.objects.filter(
-            Q(name__icontains=student_name) & Q(church_id=church_id)
-        )
+        if church_id:
+            query_results = Student.objects.filter(
+                Q(name__icontains=student_name) & Q(church_id=church_id)
+            )
+        else:
+            query_results = Student.objects.filter(
+                Q(name__icontains=student_name)
+            )
+            
 
         context["results"] = list(range(len(query_results)))
 
