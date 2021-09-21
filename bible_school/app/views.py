@@ -15,11 +15,11 @@ def lookup_page(request):
     context["churches"] = [{"id":_['id'], "name":_['name']} for _ in church_list.values()]
 
     if request.method == "POST":
-        query_q = request.POST.get('q', '')
-        breakpoint()
+        student_name = request.POST.get('student_name', '')
+        church_id = request.POST.get('church_id', '')
 
         query_results = Student.objects.filter(
-            Q(name__icontains=query_q)
+            Q(name__icontains=student_name) & Q(church_id=church_id)
         )
 
         context["results"] = list(range(len(query_results)))
@@ -28,7 +28,6 @@ def lookup_page(request):
             context["results"][idx] = (
                 (
                     record.name,
-                    record.church.name,
                     record.title.name,
                     str(record.contact)[-4:],
                     record.cohort.name

@@ -18,7 +18,7 @@
     {% csrf_token %}
     <div class="row">
       <div class="col-md-5">
-        <select class="form-select" name="church_select" aria-label="church_select">
+        <select class="form-select" name="church_id" aria-label="church_select">
           <option disabled selected hidden>교회를 선택해주세요</option>
           {% for church in context.churches %}
           <option value="{{ church.id }}">{{ church.name }}</option>
