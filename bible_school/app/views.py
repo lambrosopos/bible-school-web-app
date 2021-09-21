@@ -42,7 +42,7 @@ def lookup_page(request):
                 )
             )
 
-    return render(request, 'pages/lookup.html', {'context':context})
+    return render(request, 'pages/lookup.html', context)
 
 
 def student_registration(request):
@@ -57,4 +57,5 @@ def student_registration(request):
 
 def student_lookup(request, student_id):
     breakpoint()
-    pass
+
+    return render(request, 'student/student_group.html', context)
