@@ -33,10 +33,12 @@ def lookup_page(request):
         for idx, record in enumerate(query_results):
             context["results"][idx] = (
                 (
+                    record.id,
                     record.name,
                     record.title.name,
                     str(record.contact)[-4:],
-                    record.cohort.name
+                    record.cohort.name,
+                    record.church.name
                 )
             )
 
@@ -53,5 +55,6 @@ def student_registration(request):
         form = StudentForm()
     return render(request, 'student/student_form.html', {'form':form})
 
-def student_lookup(request):
+def student_lookup(request, student_id):
+    breakpoint()
     pass
