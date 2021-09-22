@@ -9,6 +9,8 @@ jinja2 = "*"
 django-crispy-forms = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 selenium = "*"
