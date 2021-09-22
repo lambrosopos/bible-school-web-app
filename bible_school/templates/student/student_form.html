@@ -4,38 +4,50 @@
 {% block active_navlink %}
 <a class="nav-link" href="{% url 'main_page' %}">메인 화면</a>
 <a class="nav-link active" aria-current="page" href="{% url
-          'create_student_form' %}">학생 등록</a>
+                          'create_student_form' %}">학생 등록</a>
 <a class="nav-link" href="{% url 'lookup_page' %}">조회</a>
 {% endblock %}
 
 {% block main_body %}
-<p>* 표시는 필수사항입니다</p>
-<br>
+<style>
+.student-form {
+  width: 40em;
+  margin-left:auto;
+  margin-right:auto;
+}
 
-<form method="post">
-  {% csrf_token %}
-  <div class="row">
-    <div class="col-md-6">
-      {{ form.name | as_crispy_field }}
-    </div>
-    <div class="col-md-6">
-      {{ form.title | as_crispy_field }}
-    </div>
-  </div>
+</style>
+
+<div class="student-form">
+  <p>* 표시는 필수사항입니다</p>
   <br>
-  <div class="row">
-    <div class="col-md-6">
-      {{ form.contact | as_crispy_field }}
+  <form method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6">
+        {{ form.name | as_crispy_field }}
+      </div>
+      <div class="col-md-6">
+        {{ form.title | as_crispy_field }}
+      </div>
     </div>
-    <div class="col-md-6">
-      {{ form.church | as_crispy_field }}
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        {{ form.contact | as_crispy_field }}
+      </div>
+      <div class="col-md-6">
+        {{ form.church | as_crispy_field }}
+      </div>
     </div>
-  </div>
-  <br>
-  {{ form.memo | as_crispy_field }}
-  <br>
-  <input type="submit" value="등록">
-</form>
+    <br>
+    {{ form.cohort | as_crispy_field }}
+    <br>
+    {{ form.memo | as_crispy_field }}
+    <br>
+    <input type="submit" value="등록">
+  </form>
+</div>
 
 <br>
 <p>문제가 생기면 관리자에게 연락주세요</p>

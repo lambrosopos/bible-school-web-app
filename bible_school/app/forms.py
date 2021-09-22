@@ -6,7 +6,7 @@ from .models import Student
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = [ 'name', 'title', 'contact', 'memo', 'church']
+        fields = [ 'name', 'title', 'contact', 'memo', 'church', 'cohort']
         widgets = {
             "name": forms.TextInput(
                 attrs={
@@ -21,13 +21,18 @@ class StudentForm(forms.ModelForm):
             ),
             "contact": forms.TextInput(
                 attrs={
-                    "placeholder":"개인 연락처를 적어주세요 (예: 010-1234-4321)"
+                    "placeholder":"(예시: 010-1234-4321)"
                 }
             ),
             "church": forms.Select(
                 attrs={
                     "placeholder":"현재 출석중인 계시는 교회를 선택해주세요"
                     "(없는 경우 관리자에게 문의해주세요)"
+                }
+            ),
+            "cohort": forms.Select(
+                attrs={
+                    "placeholder":"등록할 기수를 선택해주세요"
                 }
             ),
             "memo": forms.Textarea(
@@ -41,6 +46,7 @@ class StudentForm(forms.ModelForm):
             "title": _("직책"),
             "contact": _("연락처"),
             "church": _("교회"),
+            "cohort": _("기수"),
             "memo": _("메모")
         }
 

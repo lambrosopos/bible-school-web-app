@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import StudentForm
-from .models import Student, Church, CohortStudentJoin
+from .models import Student, Church, CohortStudentJoin, Cohort
 
 def main_page(request):
     return render(request, 'pages/index.html')
